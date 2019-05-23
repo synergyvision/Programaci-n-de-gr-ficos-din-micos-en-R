@@ -1,1 +1,1 @@
-# Programaci-n-de-gr-ficos-din-micos-en-R
+# Programacion-de-graficos-dinamicos-en-R
