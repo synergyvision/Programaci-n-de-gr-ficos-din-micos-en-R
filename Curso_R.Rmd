@@ -1,0 +1,203 @@
+---
+title: "Example Document"
+author: "Your name here"
+output:
+  html_document:
+    self_contained: false
+---
+
+```{r, include=FALSE}
+tutorial::go_interactive()
+```
+
+# Ejercicio 1
+
+```{r ex="create_a", type="pre-exercise-code"}
+#x <- seq(-5*pi,5*pi,length=100)
+
+#y <- cos(x)
+
+```
+
+```{r ex="create_a", type="sample-code"}
+# Definir variable x, como una secuencia de 100 valores entre -5*pi y 5*pi 
+
+
+# Definir variable y, como el coseno del vector anterior
+
+
+# Crear un grafico de líneas, de color verde y de anchura de línea 4
+
+
+
+```
+
+```{r ex="create_a", type="solution"}
+#x
+x <- seq(-5*pi,5*pi,length=100)
+
+#y
+y <- cos(x)
+
+# Grafica la función
+a <- plot(x,y,type = "l",col="green",lwd=4)
+a
+```
+
+```{r ex="create_a", type="sct"}
+test_object("a")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+# Ejercicio 2
+
+```{r ex="create_b", type="pre-exercise-code"}
+x <- seq(-5*pi,5*pi,length=100)
+
+y <- cos(x)
+
+```
+
+```{r ex="create_b", type="sample-code"}
+# A partir del grafico anterior, agregar título, subtíluo y nombre de ejes
+b=plot(x,y,type = "l",col="green",lwd=4,main=,sub = ,xlab = ,ylab = )
+b
+
+
+```
+
+```{r ex="create_b", type="solution"}
+b <- plot(x,y,type = "l",col="green",lwd=4,main="Coseno",sub ="Grafico 1" ,xlab = "eje x" ,ylab = "eje y" )
+b
+```
+
+```{r ex="create_b", type="sct"}
+test_object("b")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+# Ejercicio 3
+
+```{r ex="create_c", type="pre-exercise-code"}
+x <- seq(-5*pi,5*pi,length=100)
+
+y <- cos(x)
+
+```
+
+```{r ex="create_c", type="sample-code"}
+# A partir de la data anterior, generar un grafico de puntos
+b1=plot(x,y,type = "-",col="green",lwd=4)
+
+# Generar un grafico de líneas + puntos
+b2=plot(x,y,type = "-",col="green",lwd=4)
+
+# Generar un grafico de líneas sin puntos
+b3=plot(x,y,type = "-",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "o"
+b4=plot(x,y,type = "-",col="green",lwd=4)
+
+
+```
+
+```{r ex="create_c", type="solution"}
+# Generar un grafico de puntos
+b1=plot(x,y,type = "p",col="green",lwd=4)
+
+# Generar un grafico de líneas + puntos
+b2=plot(x,y,type = "b",col="green",lwd=4)
+
+# Generar un grafico de líneas sin puntos
+b3=plot(x,y,type = "c",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "o"
+b4=plot(x,y,type = "o",col="green",lwd=4)
+```
+
+# Ejercicio 4
+
+```{r ex="create_d", type="pre-exercise-code"}
+x <- seq(-5*pi,5*pi,length=100)
+
+y <- cos(x)
+
+```
+
+```{r ex="create_d", type="sample-code"}
+# Generar un grafico usando argunmeto "h"
+c1=plot(x,y,type = "-",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "s"
+c2=plot(x,y,type = "-",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "S"
+c3=plot(x,y,type = "-",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "n"
+c4=plot(x,y,type = "-",col="green",lwd=4)
+
+
+```
+
+```{r ex="create_d", type="solution"}
+# Generar un grafico usando argunmeto "h"
+c1=plot(x,y,type = "h",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "s"
+c2=plot(x,y,type = "s",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "S"
+c3=plot(x,y,type = "S",col="green",lwd=4)
+
+# Generar un grafico usando argunmeto "n"
+c4=plot(x,y,type = "n",col="green",lwd=4)
+```
+
+```{r ex="create_d", type="sct"}
+test_object("c1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+# Ejercicio 5
+
+```{r ex="create_e", type="pre-exercise-code"}
+x <- seq(-5*pi,5*pi,length=100)
+
+y <- cos(x)
+
+```
+
+```{r ex="create_e", type="sample-code"}
+# Generar un grafico usando asp = 0.2
+d1=plot(x,y,type = "l",col="green",lwd=4,asp=___)
+
+# Generar un grafico usando asp = 1
+d1=plot(x,y,type = "l",col="green",lwd=4,asp=___)
+
+# Generar un grafico usando asp = 3
+d1=plot(x,y,type = "l",col="green",lwd=4,asp=___)
+
+
+
+```
+
+```{r ex="create_e", type="solution"}
+# Generar un grafico usando asp = 0.2
+d1=plot(x,y,type = "l",col="green",lwd=4,asp=0.2)
+
+# Generar un grafico usando asp = 1
+d1=plot(x,y,type = "l",col="green",lwd=4,asp=1)
+
+# Generar un grafico usando asp = 3
+d1=plot(x,y,type = "l",col="green",lwd=4,asp=3)
+```
+
+```{r ex="create_e", type="sct"}
+test_object("d1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
