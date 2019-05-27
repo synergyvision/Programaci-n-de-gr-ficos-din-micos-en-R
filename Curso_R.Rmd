@@ -1,6 +1,6 @@
 ---
-title: "Example Document"
-author: "Your name here"
+title: "Programación y elaboración de gráficos en R"
+author: "Freddy F. Tapia C."
 output:
   html_document:
     self_contained: false
@@ -10,7 +10,9 @@ output:
 tutorial::go_interactive()
 ```
 
-# Ejercicio 1
+## <span style="color:navy"> **_Construción de gráficos usando librería base_** </span>
+
+### Definir data a graficar
 
 ```{r ex="create_a", type="pre-exercise-code"}
 #x <- seq(-5*pi,5*pi,length=100)
@@ -23,10 +25,13 @@ tutorial::go_interactive()
 # Definir variable x, como una secuencia de 100 valores entre -5*pi y 5*pi 
 
 
+
 # Definir variable y, como el coseno del vector anterior
 
 
+
 # Crear un grafico de líneas, de color verde y de anchura de línea 4
+
 
 
 
@@ -50,7 +55,7 @@ test_object("a")
 success_msg("Bien hecho!")
 ```
 
-# Ejercicio 2
+### Construir un gráfico sencillo
 
 ```{r ex="create_b", type="pre-exercise-code"}
 x <- seq(-5*pi,5*pi,length=100)
@@ -60,9 +65,13 @@ y <- cos(x)
 ```
 
 ```{r ex="create_b", type="sample-code"}
-# A partir del grafico anterior, agregar título, subtíluo y nombre de ejes
-b=plot(x,y,type = "l",col="green",lwd=4,main=,sub = ,xlab = ,ylab = )
-b
+# A partir del grafico anterior, agregar título, subtítulo y nombre de ejes
+b=plot(x,y,type = "l",col="green",lwd=4,main=,sub =___ ,xlab =___ ,ylab =___ )
+
+# Crear un gráfico de color morado, y de titulo "Función Coseno"
+
+
+# Crear un gráfico de color rojo y con un grosor de línea de 5
 
 
 ```
@@ -70,6 +79,12 @@ b
 ```{r ex="create_b", type="solution"}
 b <- plot(x,y,type = "l",col="green",lwd=4,main="Coseno",sub ="Grafico 1" ,xlab = "eje x" ,ylab = "eje y" )
 b
+
+b1 <- plot(x,y,type = "l",col="purple",lwd=4,main="Función Coseno")
+b1
+
+b2 <- plot(x,y,type = "l",col="red",lwd=5)
+b2
 ```
 
 ```{r ex="create_b", type="sct"}
@@ -78,7 +93,7 @@ test_object("b")
 success_msg("Bien hecho!")
 ```
 
-# Ejercicio 3
+### Construir diferentes tipos de gráficos (1)
 
 ```{r ex="create_c", type="pre-exercise-code"}
 x <- seq(-5*pi,5*pi,length=100)
@@ -117,7 +132,7 @@ b3=plot(x,y,type = "c",col="green",lwd=4)
 b4=plot(x,y,type = "o",col="green",lwd=4)
 ```
 
-# Ejercicio 4
+### Construir diferentes tipos de gráficos (2)
 
 ```{r ex="create_d", type="pre-exercise-code"}
 x <- seq(-5*pi,5*pi,length=100)
@@ -162,7 +177,7 @@ test_object("c1")
 success_msg("Bien hecho!")
 ```
 
-# Ejercicio 5
+### Uso de argumentos en la construcción de un gráfico
 
 ```{r ex="create_e", type="pre-exercise-code"}
 x <- seq(-5*pi,5*pi,length=100)
@@ -201,3 +216,209 @@ test_object("d1")
 #test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
 success_msg("Bien hecho!")
 ```
+
+## <span style="color:navy"> **_Construción de gráficos usando paquete ggplot2_** </span>
+
+### Generar un gráfico usando ggplot
+
+```{r ex="create_f", type="pre-exercise-code"}
+library(ggplot2)
+
+x <- seq(-5*pi,5*pi,length=100)
+
+y <- cos(x)
+
+```
+
+```{r ex="create_f", type="sample-code"}
+# Generar un grafico forma 1
+
+# Generar un grafico forma 2
+
+# Generar un grafico forma 3
+
+
+
+```
+
+```{r ex="create_f", type="solution"}
+# Generar un grafico forma 1
+a1=ggplot(data=data.frame(x,y), aes(x, y)) + geom_line(color="blue")
+a1
+
+# Generar un grafico forma 2
+a2=ggplot(data=data.frame(x,y)) + geom_line( aes(x, y),color="green")
+a2
+
+# Generar un grafico forma 3
+a3=ggplot() + geom_line(data=data.frame(x,y),aes(x, y),color="brown")
+a3
+
+```
+
+```{r ex="create_f", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+### Usos de Geoms y estéticas (1)
+
+```{r ex="create_g", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_g", type="sample-code"}
+# Generar un grafico de área
+
+# Generar un grafico de puntos
+
+# Generar un Histograma
+
+# Un grafico de barras
+
+
+```
+
+```{r ex="create_g", type="solution"}
+# Generar un grafico de área
+a <- ggplot(mpg, aes(hwy))
+
+a+geom_area(stat = "bin",color="blue",fill="green")
+
+# Generar un grafico de puntos
+a + geom_dotplot()
+
+# Generar un Histograma
+a + geom_histogram(binwidth = 5)
+
+# Un grafico de barras
+b <- ggplot(mpg, aes(fl))
+
+b + geom_bar()
+
+
+
+```
+
+```{r ex="create_g", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+### Usos de Geoms y estéticas (2)
+
+```{r ex="create_h", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_h", type="sample-code"}
+# Generar un grafico de path
+
+# Generar un grafico de ribbon
+
+# Generar un jitter
+
+# Un grafico de point
+
+
+```
+
+```{r ex="create_h", type="solution"}
+# Generar un grafico de path
+d <- ggplot(economics,aes(date,unemploy))
+d+geom_path(lineend = "butt",linejoin = "round",linemitre = 1)
+
+# Generar un grafico de ribbon
+d+geom_ribbon(aes(ymin=unemploy-900,ymax=unemploy+900))
+
+# Generar un jitter
+f <- ggplot(mpg, aes(cty, hwy))
+f+ geom_jitter()
+
+# Un grafico de point
+f+ geom_point()
+
+```
+
+```{r ex="create_h", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+### Usos de Geoms y estéticas (3)
+
+```{r ex="create_i", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_i", type="sample-code"}
+# Generar un grafico de smoth
+
+# Generar un grafico de text
+
+# Generar un boxplot
+
+# Un grafico de line
+
+# Un grafico de geom map
+
+
+```
+
+```{r ex="create_i", type="solution"}
+# Generar un grafico de smoth
+f <- ggplot(mpg, aes(cty, hwy))
+f+ geom_smooth()
+
+# Generar un grafico de text
+f+ geom_text(aes(label = cty))
+
+# Generar un boxplot
+g <- ggplot(mpg,aes(class,hwy))
+g+geom_boxplot()
+
+# Un grafico de line
+j <- ggplot(economics,aes(date, unemploy))
+j+geom_line()
+
+# Un grafico de geom map
+data <- data.frame(murder=USArrests$Murder,state=tolower(rownames(USArrests)))
+map=map_data("state")
+l <- ggplot(data,aes(fill=murder))
+l+geom_map(aes(map_id=state),map=map)+expand_limits(x=map$long,y=map$lat)
+
+
+```
+
+```{r ex="create_i", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+### Uso de Stats
+
+### Escalas
+
+### Sistemas de coordenadas
+
+### Ajuste de posición y temas
+
+### Faceting y labels
+
+### Legend y zooming
+
+
+## <span style="color:navy"> **_Construción de gráficos dinámicos_** </span>
+
+
+## <span style="color:navy"> **_Creación de nuevas estructuras gráficas_** </span>
