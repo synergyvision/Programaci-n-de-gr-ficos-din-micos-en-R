@@ -407,15 +407,330 @@ success_msg("Bien hecho!")
 
 ### Uso de Stats
 
+```{r ex="create_j", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_j", type="sample-code"}
+# Generar un grafico de stat_bin
+
+# Generar un grafico de stat_bin2d
+
+# Generar un grafico de stat_contour
+
+# Generar un grafico de stat_boxplot
+
+
+
+```
+
+```{r ex="create_j", type="solution"}
+# Generar un grafico de stat_bin
+a <- ggplot(mpg, aes(hwy))
+a+stat_bin(binwidth = 1,origin=10)
+
+# Generar un grafico de stat_bin2d
+f <- ggplot(mpg, aes(cty, hwy))
+f + stat_bin2d(bins = 30, drop = TRUE)
+
+# Generar un grafico de stat_contour
+m <- ggplot(seals,aes(long,lat))
+m + stat_contour(aes(z = delta_lat))
+
+# Generar un grafico de stat_boxplot
+g <- ggplot(mpg,aes(class,hwy))
+g + stat_boxplot(coef = 1.5)
+
+
+```
+
+```{r ex="create_j", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
 ### Escalas
+
+```{r ex="create_k", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_k", type="sample-code"}
+# Generar un grafico de scale_fill_manual
+
+# Generar un grafico de scale_x_date (1)
+
+# Generar un grafico de scale_x_date (2)
+
+# Generar un grafico de scale_x_date (3)
+
+# Generar un grafico de scale_x_date (4)
+
+# Generar un grafico de scale_x_date (5)
+
+```
+
+```{r ex="create_k", type="solution"}
+# Generar un grafico de scale_fill_manual
+b <- ggplot(mpg, aes(fl))
+n <- b + geom_bar(aes(fill = fl))
+
+n + scale_fill_manual(
+  values = c("skyblue", "royalblue", "blue", "navy"), limits = c("d", "e", "p", "r"), breaks =c("d", "e", "p", "r"), name = "fuel", labels = c("D", "E", "P", "R"))
+
+# Generar un grafico de scale_x_date (1)
+last_month <- Sys.Date() - 0:29
+df <- data.frame(
+  date = last_month,
+  price = runif(30)
+)
+base <- ggplot(df, aes(date, price)) +
+  geom_line()
+
+base + scale_x_date(date_labels = "%Y %m %d")
+
+# Generar un grafico de scale_x_date (2)
+base + scale_x_date(date_labels = "%b %d")
+
+# Generar un grafico de scale_x_date (3)
+base + scale_x_date(date_breaks = "1 week", date_labels = "%W")
+
+# Generar un grafico de scale_x_date (4)
+base + scale_x_date(date_minor_breaks = "1 day")
+
+# Generar un grafico de scale_x_date (5)
+base + scale_x_date(limits = c(Sys.Date() - 7, NA))
+
+```
+
+```{r ex="create_k", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
 
 ### Sistemas de coordenadas
 
+
+```{r ex="create_l", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_l", type="sample-code"}
+# Generar un grafico de coord_cartesian
+
+# Generar un grafico de coord_fixed 
+
+# Generar un grafico de coord_flip
+
+# Generar un grafico de coord_polar
+
+# Generar un grafico de coord_trans
+
+# Generar un grafico de coord_map
+
+```
+
+```{r ex="create_l", type="solution"}
+# Generar un grafico de coord_cartesian
+b <- ggplot(mpg, aes(fl))
+r <- b + geom_bar()
+r + coord_cartesian(xlim = c(0, 5))
+
+
+# Generar un grafico de coord_fixed 
+r + coord_fixed(ratio = 1/5)
+
+# Generar un grafico de coord_flip
+r + coord_flip()
+
+# Generar un grafico de coord_polar
+r + coord_polar(theta = "x", direction=1 )
+
+# Generar un grafico de coord_trans
+r + coord_trans(y = "sqrt")
+
+# Generar un grafico de coord_map
+r + coord_map(projection = "ortho",
+              orientation=c(41, -74, 0))
+
+```
+
+```{r ex="create_l", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
 ### Ajuste de posición y temas
+
+```{r ex="create_m", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_m", type="sample-code"}
+# Generar un grafico de dodge
+
+# Generar un grafico de fill
+
+# Generar un grafico de stack
+
+# Generar un grafico de theme_bw
+
+# Generar un grafico de theme_grey
+
+# Generar un grafico de theme_void
+
+```
+
+```{r ex="create_m", type="solution"}
+# Generar un grafico de dodge
+s <- ggplot(mpg,aes(fl,fill=drv))
+s + geom_bar(position = "dodge")
+
+# Generar un grafico de fill
+s + geom_bar(position = "fill")
+
+# Generar un grafico de stack
+s + geom_bar(position = "stack")
+
+# Generar un grafico de theme_bw
+b <- ggplot(mpg, aes(fl))
+r <- b + geom_bar()
+
+r +theme_bw()
+
+# Generar un grafico de theme_grey
+r+theme_grey()
+
+# Generar un grafico de theme_void
+r+theme_void()
+
+```
+
+```{r ex="create_m", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
 
 ### Faceting y labels
 
+```{r ex="create_n", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_n", type="sample-code"}
+# Generar un grafico de facet_grid (1)
+
+# Generar un grafico de facet_grid (2)
+
+# Generar un grafico de facet_grid (3)
+
+# Generar un grafico de labels (1)
+
+# Generar un grafico de labels (2)
+
+
+```
+
+```{r ex="create_n", type="solution"}
+# Generar un grafico de facet_grid (1)
+t <- ggplot(mpg,aes(cty,hwy)) + geom_point()
+
+t + facet_grid(. ~ fl)
+
+# Generar un grafico de facet_grid (2)
+t + facet_grid(year ~ .)
+
+# Generar un grafico de facet_grid (3)
+t + facet_grid(year ~ fl)
+
+# Generar un grafico de labels (1)
+t + ggtitle("New Plot Title")+xlab("New X label")+ylab("New Y label")
+
+# Generar un grafico de labels (2)
+t + labs(title =" New title", x = "New x", y = "New y")
+
+```
+
+```{r ex="create_n", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
 ### Legend y zooming
+
+```{r ex="create_o", type="pre-exercise-code"}
+library(ggplot2)
+
+
+```
+
+```{r ex="create_o", type="sample-code"}
+# Generar un grafico de legend (1)
+
+# Generar un grafico de legend (2)
+
+# Generar un grafico de legend (3)
+
+# Generar un grafico de zoom (1)
+
+# Generar un grafico de zoom (2)
+
+# Generar un grafico de zoom (3)
+
+
+```
+
+```{r ex="create_o", type="solution"}
+# Generar un grafico de legend (1)
+ToothGrowth$dose <- as.factor(ToothGrowth$dose)
+p <- ggplot(ToothGrowth, aes(x=dose, y=len, fill=dose)) + 
+  geom_boxplot()
+p + theme(legend.position="bottom")
+
+# Generar un grafico de legend (2)
+p + theme(legend.text = element_text(colour="blue", size=10, 
+                                     face="bold"))
+
+# Generar un grafico de legend (3)
+p + theme(legend.background = element_rect(fill="lightblue",
+                                  size=0.5, linetype="solid", 
+                                  colour ="darkblue"))
+
+# Generar un grafico de zoom (1)
+t <- ggplot(mpg,aes(cty,hwy)) + geom_point()
+
+t + coord_cartesian(
+  xlim = c(0, 100), ylim = c(10, 20))
+
+# Generar un grafico de zoom (2)
+t + ylim(10, 20)
+
+# Generar un grafico de zoom (3)
+t + scale_x_continuous(limits = c(0, 100)) +
+  scale_y_continuous(limits = c(0, 100))
+
+```
+
+```{r ex="create_o", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
 
 
 ## <span style="color:navy"> **_Construción de gráficos dinámicos_** </span>

@@ -434,7 +434,7 @@ t + facet_grid(. ~ fl, labeller = label_bquote(alpha ^ .(x)))
 t + facet_grid(. ~ fl, labeller = label_parsed)
 
 # LABELS
-t + ggtitle("New Plot Title")
+t + ggtitle("New Plot Title")+xlab("New X label")+ylab("New Y label")
 
 t + xlab("New X label")
 
@@ -455,7 +455,7 @@ t + scale_fill_discrete(name = "Title",
 t + coord_cartesian(
   xlim = c(0, 100), ylim = c(10, 20))
 
-t + xlim(0, 100) + ylim(10, 20)
+t + ylim(10, 20)
 
 t + scale_x_continuous(limits = c(0, 100)) +
   scale_y_continuous(limits = c(0, 100))
@@ -1150,3 +1150,125 @@ geom_skinnybox <- function(mapping = NULL, data = NULL, stat = "skinnybox",
 mutate(airquality, Month = factor(Month)) %>%
   ggplot(aes(Month, Ozone)) + 
   geom_skinnybox()
+
+
+#...........................#
+#grafico imagen 1 (grafico de disperción)
+library(plotly)
+
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+
+p <- plot_ly(
+  d, x = ~carat, y = ~price,
+  # Hover text:
+  text = ~paste("Price: ", price, '$<br>Cut:', cut),
+  color = ~carat, size = ~carat
+)
+
+#grafico imagen 2 (Histogramas)
+p <- plot_ly(alpha = 0.6) %>%
+  add_histogram(x = ~rnorm(500)) %>%
+  add_histogram(x = ~rnorm(500) + 1) %>%
+  layout(barmode = "overlay")
+
+
+#grafico imagen 3 (grafico de velas)
+library(plotly)
+library(quantmod)
+
+getSymbols("AAPL",src='yahoo')
+
+# basic example of ohlc charts
+df <- data.frame(Date=index(AAPL),coredata(AAPL))
+df <- tail(df, 30)
+
+# cutom colors
+i <- list(line = list(color = '#FFD700'))
+d <- list(line = list(color = '#0000ff'))
+
+p <- df %>%
+  plot_ly(x = ~Date, type="candlestick",
+          open = ~AAPL.Open, close = ~AAPL.Close,
+          high = ~AAPL.High, low = ~AAPL.Low,
+          increasing = i, decreasing = d)
+
+
+
+#grafico imagen 4 (grafico de la tierra)
+df <- read.csv('https://raw.githubusercontent.com/plotly/datasets/master/globe_contours.csv')
+df$id <- seq_len(nrow(df))
+
+library(tidyr)
+d <- df %>%
+  gather(key, value, -id) %>%
+  separate(key, c("l", "line"), "\\.") %>%
+  spread(l, value)
+
+geo <- list(
+  showland = TRUE,
+  showlakes = TRUE,
+  showcountries = TRUE,
+  showocean = TRUE,
+  countrywidth = 0.5,
+  landcolor = toRGB("grey90"),
+  lakecolor = toRGB("white"),
+  oceancolor = toRGB("white"),
+  projection = list(
+    type = 'orthographic',
+    rotation = list(
+      lon = -100,
+      lat = 40,
+      roll = 0
+    )
+  ),
+  lonaxis = list(
+    showgrid = TRUE,
+    gridcolor = toRGB("gray40"),
+    gridwidth = 0.5
+  ),
+  lataxis = list(
+    showgrid = TRUE,
+    gridcolor = toRGB("gray40"),
+    gridwidth = 0.5
+  )
+)
+
+p <- plot_geo(d) %>%
+  group_by(line) %>%
+  add_lines(x = ~lon, y = ~lat) %>%
+  layout(
+    showlegend = FALSE, geo = geo,
+    title = 'Contour lines over globe<br>(Click and drag to rotate)'
+  )
+
+
+
+#grafico imagen 5 (mapa EEUU)
+library(plotly)
+df <- read.csv("https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv")
+df$hover <- with(df, paste(state, '<br>', "Beef", beef, "Dairy", dairy, "<br>",
+                           "Fruits", total.fruits, "Veggies", total.veggies,
+                           "<br>", "Wheat", wheat, "Corn", corn))
+# give state boundaries a white border
+l <- list(color = toRGB("white"), width = 2)
+# specify some map projection/options
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('white')
+)
+
+p <- plot_geo(df, locationmode = 'USA-states') %>%
+  add_trace(
+    z = ~total.exports, text = ~hover, locations = ~code,
+    color = ~total.exports, colors = 'Purples'
+  ) %>%
+  colorbar(title = "Millions USD") %>%
+  layout(
+    title = '2011 US Agriculture Exports by State<br>(Hover for breakdown)',
+    geo = g
+  )
+
+
+
