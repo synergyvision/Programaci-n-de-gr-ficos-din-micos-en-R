@@ -735,5 +735,149 @@ success_msg("Bien hecho!")
 
 ## <span style="color:navy"> **_Construción de gráficos dinámicos_** </span>
 
+### HTML Widgets (1)
+
+```{r ex="create_p", type="pre-exercise-code"}
+library(ggplot2)
+library(magrittr)
+#library(leaflet) #
+#library(dygraphs) #
+library(plotly)
+#library(rbokeh) #
+
+
+```
+
+```{r ex="create_p", type="sample-code"}
+# Generar un grafico usando paquete leaflet
+
+# Generar un grafico usando paquete dygraphs
+
+# Generar un grafico usando paquete plotly
+
+# Generar un grafico usando paquete rbokeh
+
+
+```
+
+```{r ex="create_p", type="solution"}
+# Generar un grafico usando paquete leaflet
+# rand_lng <- function(n = 10) rnorm(n, -93.65, .01)
+# rand_lat <- function(n = 10) rnorm(n, 42.0285, .01)
+# 
+# categories <- LETTERS[1:10]
+# df <- data.frame(
+#   lat = rand_lat(100), lng = rand_lng(100), size = runif(100, 5, 20),
+#   category = factor(sample(categories, 100, replace = TRUE), levels = categories),
+#   value = rnorm(100)
+# )
+# m <- leaflet(df) %>% addTiles()
+# m %>% addCircleMarkers(~lng, ~lat, radius = ~size)
+# m %>% addCircleMarkers(~lng, ~lat, radius = runif(100, 4, 10), color = c("red"))
+
+# Generar un grafico usando paquete dygraphs
+# dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+#   dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+
+
+# Generar un grafico usando paquete plotly
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) 
++ geom_bar(position = "dodge")
+
+ggplotly(p)
+
+
+# Generar un grafico usando paquete rbokeh
+# figure() %>%
+#   ly_points(Sepal.Length, Sepal.Width, data = iris,
+#             color = Species, glyph = Species,
+#             hover = list(Sepal.Length, Sepal.Width))
+# 
+
+
+```
+
+```{r ex="create_p", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+### HTML Widgets (2)
+
+```{r ex="create_q", type="pre-exercise-code"}
+library(ggplot2)
+library(magrittr)
+#library(highcharter) #
+#library(networkD3) #
+#library(d3heatmap) #
+library(DT)
+#library(DiagrammeR) #
+
+
+```
+
+```{r ex="create_q", type="sample-code"}
+# Generar un grafico usando paquete highcharter
+
+# Generar un grafico usando paquete networkD3
+
+# Generar un grafico usando paquete d3heatmap
+
+# Generar un grafico usando paquete DT
+
+# Generar un grafico usando paquete DiagrammeR
+
+
+```
+
+```{r ex="create_q", type="solution"}
+# Generar un grafico usando paquete highcharter
+# highchart() %>% 
+#   hc_title(text = "Scatter chart with size and color") %>% 
+#   hc_add_series_scatter(mtcars$wt, mtcars$mpg,
+#                         mtcars$drat, mtcars$hp)
+
+# Generar un grafico usando paquete networkD3
+# data(MisLinks, MisNodes)
+# forceNetwork(Links = MisLinks, Nodes = MisNodes, Source = "source",
+#              Target = "target", Value = "value", NodeID = "name",
+#              Group = "group", opacity = 0.4)
+
+# Generar un grafico usando paquete d3heatmap
+# d3heatmap(mtcars, scale="column", colors="Blues")
+
+# Generar un grafico usando paquete DT
+datatable(iris, options = list(pageLength = 5))
+
+# Generar un grafico usando paquete DiagrammeR
+# grViz("
+#       digraph {
+#       layout = twopi
+#       node [shape = circle]
+#       A -> {B C D} 
+#       }")
+
+
+```
+
+```{r ex="create_q", type="sct"}
+#test_object("a1")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+### Paquete Ploty (1)
+
+### Paquete Ploty (2)
+
+### Paquete Dygraphs
+
+### Grobs y Viewports
+
+### Paquete GridExtra
+
+
+
 
 ## <span style="color:navy"> **_Creación de nuevas estructuras gráficas_** </span>
