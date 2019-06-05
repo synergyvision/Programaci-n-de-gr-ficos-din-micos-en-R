@@ -105,7 +105,7 @@ ggplot() + geom_line(data=data.frame(x,y),aes(x, y),color="blue") + ggtitle("Cos
 # hwy: highway miles per gallon
 a <- ggplot(mpg, aes(hwy))
 
-a+geom_area(stat = "bin",color="blue",fill="green")
+a+geom_area(stat = "bin",color="green",fill="navy")
 
 #geom_density
 a + geom_density(kernel = "gaussian")
