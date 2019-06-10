@@ -103,8 +103,10 @@ ggplot() + geom_line(data=data.frame(x,y),aes(x, y),color="blue") + ggtitle("Cos
 #geom_area
 #mpg: Fuel economy data from 1999 and 2008 for 38 popular models of car
 # hwy: highway miles per gallon
+#Defino data a graficar
 a <- ggplot(mpg, aes(hwy))
 
+#realizo gráfico
 a+geom_area(stat = "bin",color="green",fill="navy")
 
 #geom_density
@@ -220,11 +222,10 @@ d <- ggplot(diamonds, aes(x, y)) + xlim(4, 10) + ylim(4, 10)
 d + geom_bin2d()
 
 #geom_density2d
-m <- ggplot(faithful, aes(x = eruptions, y = waiting)) +
-  geom_point() +
-  xlim(0.5, 6) +
-  ylim(40, 110)
-m + geom_density_2d()
+m <- ggplot(faithful, aes(x = eruptions, y = waiting)) 
+
+
+m +  geom_point() + xlim(0.5, 6) + ylim(40, 110) + geom_density_2d()
 
 #geom_hex
 d <- ggplot(diamonds, aes(carat, price))
