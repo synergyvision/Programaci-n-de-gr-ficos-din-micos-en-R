@@ -35,6 +35,8 @@ tutorial::go_interactive()
 
 
 
+
+
 ```
 
 ```{r ex="create_a", type="solution"}
@@ -66,7 +68,7 @@ y <- cos(x)
 
 ```{r ex="create_b", type="sample-code"}
 # A partir del grafico anterior, agregar título, subtítulo y nombre de ejes
-b=plot(x,y,type = "l",col="green",lwd=4,main=,sub =___ ,xlab =___ ,ylab =___ )
+b=plot(x,y,type = "l",col="green",lwd=4,main=___,sub =___ ,xlab =___ ,ylab =___ )
 
 # Crear un gráfico de color morado, y de titulo "Función Coseno"
 
@@ -216,6 +218,88 @@ test_object("d1")
 #test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
 success_msg("Bien hecho!")
 ```
+
+### Histogramas
+
+```{r ex="create_e1", type="pre-exercise-code"}
+#x <- seq(-5*pi,5*pi,length=100)
+
+#y <- cos(x)
+
+```
+
+```{r ex="create_e1", type="sample-code"}
+# Generar un histograma simple con 1000 numero aleatorios normales de varianza 1 y media 0
+a <- hist(rnorm(___,___,___))
+
+# Generar un histograma simple con 1000 numero aleatorios normales de varianza 1 y media 0, usando 20 clases (breaks)
+b <- hist(rnorm(___,___,___),breaks=___)
+
+# Generar un histograma simple con 1000 numero aleatorios normales de varianza 1 y media 0, usando 20 clases (breaks), de color gris, con un titulo = "Histograma", y nombre de ejes: eje x= "Números aleatorios", eje y= "Frecuencia"
+c <- hist(rnorm(___,___,___),breaks=___,col=___,
+      xlab=___, ylab=___,main=___)
+
+
+```
+
+```{r ex="create_e1", type="solution"}
+# Generar un histograma simple con 1000 numero aleatorios normales de varianza 1 y media 0
+a <- hist(rnorm(1000,0,1))
+
+# Generar un histograma simple con 1000 numero aleatorios normales de varianza 1 y media 0, usando 20 clases (breaks)
+b <- hist(rnorm(1000,0,1),breaks=20)
+
+# Generar un histograma simple con 1000 numero aleatorios normales de varianza 1 y media 0, usando 20 clases (breaks), de color gris, con un titulo = "Histograma", y nombre de ejes: eje x= "Números aleatorios", eje y= "Frecuencia"
+c <- hist(rnorm(1000,0,1),breaks=20,col="grey",
+      xlab="Números aleatorios", ylab="Frecuencia",main="Histograma")
+
+```
+
+```{r ex="create_e1", type="sct"}
+test_object("a")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+### Boxplots
+
+```{r ex="create_e2", type="pre-exercise-code"}
+library(ggplot2)
+data(mpg)
+
+```
+
+```{r ex="create_e2", type="sample-code"}
+# Generar boxplot simple usando las columnas 3, 8 y 9 de la data mpg
+a=boxplot(___)
+
+# Generar boxplot simple horizontal usando las columnas 3, 8 y 9 de la data mpg
+b=boxplot(___,horizontal = ___)
+
+# Generar boxplot simple  usando las columnas 3, 8 y 9 de la data mpg, usando los colores azul, verde y rojo para cada variable
+c=boxplot(___, border = c(___, ___, ___))
+
+
+```
+
+```{r ex="create_e2", type="solution"}
+# Generar boxplot simple usando las columnas 3, 8 y 9 de la data mpg
+a=boxplot(mpg[,c(3,8,9)])
+
+# Generar boxplot simple horizontal usando las columnas 3, 8 y 9 de la data mpg
+b=boxplot(mpg[,c(3,8,9)],horizontal = TRUE)
+
+# Generar boxplot simple  usando las columnas 3, 8 y 9 de la data mpg, usando los colores azul, verde y rojo para cada variable
+c=boxplot(mpg[,c(3,8,9)], border = c("blue", "green", "red"))
+```
+
+```{r ex="create_e2", type="sct"}
+test_object("a")
+#test_output_contains("x", incorrect_msg = "Make sure to print `x`.")
+success_msg("Bien hecho!")
+```
+
+
 
 ## <span style="color:navy"> **_Construción de gráficos usando paquete ggplot2_** </span>
 
