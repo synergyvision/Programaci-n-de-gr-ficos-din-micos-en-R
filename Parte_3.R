@@ -305,7 +305,7 @@ dygraph(nhtemp, main="New Haven Temperatures") %>%
 #_________#
 # Read the data (hosted on the gallery website)
 data=read.table("https://python-graph-gallery.com/wp-content/uploads/bike.csv", header=T, sep=",") %>% head(300)
-str(data)
+#str(data)
 
 # Since my time is currently a factor, I have to convert it to a date-time format!
 data$datetime = ymd_hms(data$datetime)
