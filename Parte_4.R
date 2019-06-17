@@ -6,7 +6,7 @@
 # GROBS Y VIEWPORTS #
 #####################
 library(grid)
-
+library(ggplot2)
 #_______#
 # GROBS #
 #_______#
@@ -55,8 +55,8 @@ grid.force()
 grid.ls()
 
 # elijo caracteristicas a cambiar 
-grid.edit("geom_point.points.1070", gp = gpar(col = "red"))
-grid.edit("GRID.text.1100", gp = gpar(fontface = "bold"))
+grid.edit("geom_point.points.129", gp = gpar(col = "red"))
+grid.edit("GRID.text.156", gp = gpar(fontface = "bold"))
 
 #_________#
 # Chupeta #
@@ -121,6 +121,8 @@ popViewport()
 library(grid)
 library(gridExtra)
 library(faraway)
+library(magrittr)
+library(dplyr)
 
 #_____________________________#
 # 2 graficos en 1 ventana (1) #
@@ -167,12 +169,6 @@ wc_table_vp <- viewport(x = 0.22, y = 0.85,
 pushViewport(wc_table_vp)
 grid.draw(worldcup_table)
 popViewport()
-
-
-
-
-
-
 
 
 #_______________________________#
